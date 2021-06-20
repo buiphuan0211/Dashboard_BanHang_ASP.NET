@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    var listProduct = (List<ModelEF.Model.Product>)ViewBag.Products;
+    var listCategory = (List<ModelEF.Model.Category>)ViewBag.Categories;
+}
+
+<div class="header">
+    <div>
+        <h1>Products</h1>
+    </div>
+</div>
+<div>
+    @foreach (var itemCategory in listCategory)
+    {
+    <ul>
+        <li>
+            <h1>@itemCategory.Name</h1>
+            <p>@itemCategory.Description</p>
+        </li>
+        @foreach (var itemProduct in listProduct)
+        {
+            if (itemProduct.CategoryID.Equals(itemCategory.ID))
+            {
+                <li>
+                    <img src="@itemProduct.UrlImage" alt="">
+                    <h2>@itemProduct.Name</h2>
+                </li>
+
+            }
+        }
+
+    </ul>
+    }
+</div>

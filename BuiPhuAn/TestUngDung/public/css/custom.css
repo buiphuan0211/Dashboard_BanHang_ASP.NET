@@ -1,0 +1,19 @@
+﻿body {
+
+}
+dd {
+    color :gray;
+
+}
+
+dt {
+    color: white;
+}
+
+h2 {
+    color: white;
+}
+
+.dark-edition .form-control {
+    color: black !important;
+}

@@ -1,0 +1,84 @@
+﻿@model PagedList.IPagedList<ModelEF.Model.UserAccount>
+@using PagedList.Mvc;
+@using PagedList
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="d-flex justify-content-lg-between my-3">
+    <h2 class="mt-2 text-center">USER ACCOUNT</h2>
+
+    @using (Html.BeginForm("Index", "User", FormMethod.Get, new { @class = "mb-0 d-flex align-items-end" })) // -- phần thay đổi
+    {
+        <div class="input-group no-border d-flex align-items-center">
+            <input type="text" name="search" class="form-control" value="" placeholder="Enter Employee name..." />
+            <button type="submit" class="btn btn-default btn-round btn-just-icon btn-sm">
+                <i class="material-icons">search</i>
+                <div class="ripple-container"></div>
+            </button>
+        </div>
+    }
+    <div style="margin-top: 10px;">
+        @Html.ActionLink("Create New", "Create", "", new { @class = "btn btn-success" })
+    </div>
+</div>
+<table class="table">
+
+    <tr>
+        <th>
+            UserName
+        </th>
+        <th>
+            PassWord
+        </th>
+        <th style="width">
+            Status
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary disable" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-info" }) |
+
+                @if (item.Status.Equals("ACTIVE"))
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger disabled" })
+                }
+                else
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
+
+                }
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div class="d-flex justify-content-between">
+    <div>
+        @Html.PagedListPager(Model, page => Url.Action("Index", "User", new { page, search = Request.QueryString["search"] }))
+    </div>
+    <div style="color : white">
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    </div>
+
+</div>
+
+@Html.Raw(TempData["msg"])
+

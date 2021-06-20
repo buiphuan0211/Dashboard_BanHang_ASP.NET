@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@Page.Title</title>
+    @RenderSection("head", required: false)
+    <link rel="stylesheet" href="~/public/client/css/style.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="~/public/client/css/mobile.css">
+    <script src="~/public/client/js/mobile.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="page">
+        <div id="header">
+            <div>
+                <a href="index.html" class="logo"><img src="~/public/client/images/logo.png" alt=""></a>
+                <ul id="navigation">
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li class="menu">
+                        <a href="about.html">About</a>
+                    </li>
+                    <li class="menu">
+                        <a href="blog.html">Blog</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="body">
+            @RenderBody()
+        </div>
+        <div id="footer">
+            <div>
+                <div class="connect">
+                    <a href="http://freewebsitetemplates.com/go/facebook/" class="facebook">facebook</a>
+                    <a href="http://freewebsitetemplates.com/go/twitter/" class="twitter">twitter</a>
+                    <a href="http://freewebsitetemplates.com/go/googleplus/" class="googleplus">googleplus</a>
+                    <a href="http://pinterest.com/fwtemplates/" class="pinterest">pinterest</a>
+                </div>
+                <p>&copy; 2023 Freeeze. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

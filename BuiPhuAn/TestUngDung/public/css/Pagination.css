@@ -1,0 +1,11 @@
+﻿
+
+ul.pagination > li {
+    padding: 5px 10px;
+    margin-right: 4px;
+}
+
+    ul.pagination > li.active {
+        color: white;
+        font-weight : 700;
+    }
